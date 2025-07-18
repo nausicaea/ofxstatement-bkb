@@ -229,11 +229,15 @@ class BkbParser(AbstractStatementParser):
         if refinf is not None:
             sline.check_no = refinf.text
 
-        memo_data = {
-            "CdtrRef": refinf.text if refinf is not None else "",
-            "Ustrd": rmtinf.text if rmtinf is not None else "",
-            "AddtlNtryInf": addinf.text if addinf is not None else "",
-        }
+        memo_data = {}
+        if refinf is not None:
+            memo_data["CdtrRef"] = refinf.text
+
+        if rmtinf is not None:
+            memo_data["Ustrd"] = rmtinf.text
+
+        if addinf is not None:
+            memo_data["AddtlNtryInf"] = addinf.text
 
         sline.memo = saxutils.escape(json.dumps(memo_data, sort_keys=True, separators=(',', ':')))
 
