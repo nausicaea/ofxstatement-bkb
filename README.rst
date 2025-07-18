@@ -1,11 +1,10 @@
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-ISO-20022 plugin for ofxstatement
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Basler Kantonalbank plugin for ofxstatement
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-.. image:: https://travis-ci.org/kedder/ofxstatement-iso20022.svg?branch=master
-    :target: https://travis-ci.org/kedder/ofxstatement-iso20022
+Plugin to read ISO-20022 formatted statements with specific adaptation to BKB.
 
-Plugin to read ISO-20022 formatted statements.
+This project is derived from Andrey Lebedev's (andrey@lebedev.lt) ofstatement-iso20022 (https://github.com/nausicaea/ofxstatement-bkb) project.
 
 Plugin supports the following configuration options:
 

@@ -1,4 +1,4 @@
-name: ofxstatement-iso20022
+name: ofxstatement-bkb
 on:
   push:
     branches: master

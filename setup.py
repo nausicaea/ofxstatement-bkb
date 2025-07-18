@@ -3,21 +3,21 @@
 from setuptools import find_packages
 from distutils.core import setup
 
-version = "0.8.2.dev0"
+version = "0.1.0"
 
 with open("README.rst") as f:
     long_description = f.read()
 
 setup(
-    name="ofxstatement-iso20022",
+    name="ofxstatement-bkb",
     version=version,
-    author="Andrey Lebedev",
-    author_email="andrey@lebedev.lt",
-    url="https://github.com/kedder/ofxstatement-iso20022",
-    description=("ISO-20022 plugin for ofxstatement"),
+    author="Eleanor Young",
+    author_email="developer@nausicaea.net",
+    url="https://github.com/nausicaea/ofxstatement-bkb",
+    description=("BKB plugin for ofxstatement"),
     long_description=long_description,
     license="GPLv3",
-    keywords=["ofx", "banking", "statement", "iso-20022"],
+    keywords=["ofx", "banking", "statement", "iso-20022", "Basler Kantonalbank", "BKB"],
     classifiers=[
         "Development Status :: 3 - Alpha",
         "Programming Language :: Python :: 3",
@@ -32,7 +32,7 @@ setup(
     package_dir={"": "src"},
     namespace_packages=["ofxstatement", "ofxstatement.plugins"],
     entry_points={
-        "ofxstatement": ["iso20022 = ofxstatement.plugins.iso20022:Iso20022Plugin"]
+        "ofxstatement": ["bkb = ofxstatement.plugins.bkb:BkbPlugin"]
     },
     install_requires=["ofxstatement"],
     extras_require={"test": ["pytest"]},

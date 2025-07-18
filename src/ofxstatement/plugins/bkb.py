@@ -24,17 +24,17 @@ class CamtVersion(enum.Enum):
     CAMT053 = "urn:iso:std:iso:20022:tech:xsd:camt.053"
 
 
-class Iso20022Plugin(Plugin):
-    """ISO-20022 plugin"""
+class BkbPlugin(Plugin):
+    """BKB plugin"""
 
-    def get_parser(self, filename: str) -> "Iso20022Parser":
+    def get_parser(self, filename: str) -> "BkbParser":
         default_ccy = self.settings.get("currency")
         default_iban = self.settings.get("iban")
-        parser = Iso20022Parser(filename, currency=default_ccy, iban=default_iban)
+        parser = BkbParser(filename, currency=default_ccy, iban=default_iban)
         return parser
 
 
-class Iso20022Parser(AbstractStatementParser):
+class BkbParser(AbstractStatementParser):
     version: CamtVersion
     xmlns: Dict[str, str]
 

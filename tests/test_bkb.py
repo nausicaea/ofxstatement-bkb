@@ -6,7 +6,7 @@ import pytest
 
 from ofxstatement import exceptions
 from ofxstatement.ui import UI
-from ofxstatement.plugins.iso20022 import Iso20022Plugin
+from ofxstatement.plugins.bkb import BkbPlugin
 
 
 HERE = os.path.dirname(__file__)
@@ -15,7 +15,7 @@ SAMPLES_DIR = os.path.join(HERE, "samples")
 
 def test_parse_simple() -> None:
     # GIVEN
-    plugin = Iso20022Plugin(UI(), {})
+    plugin = BkbPlugin(UI(), {})
 
     parser = plugin.get_parser(os.path.join(SAMPLES_DIR, "simple.xml"))
 
@@ -49,7 +49,7 @@ def test_parse_simple() -> None:
 
 def test_parse_unconfigured_currency() -> None:
     # GIVEN
-    plugin = Iso20022Plugin(UI(), {})
+    plugin = BkbPlugin(UI(), {})
     parser = plugin.get_parser(os.path.join(SAMPLES_DIR, "gcamp6.xml"))
 
     # WHEN
@@ -60,7 +60,7 @@ def test_parse_unconfigured_currency() -> None:
 def test_parse_gcamp6() -> None:
     # GIVEN
     config = {"currency": "XXX"}
-    plugin = Iso20022Plugin(UI(), config)
+    plugin = BkbPlugin(UI(), config)
 
     parser = plugin.get_parser(os.path.join(SAMPLES_DIR, "gcamp6.xml"))
 
@@ -96,7 +96,7 @@ def test_parse_gcamp6() -> None:
 def test_parse_davider80() -> None:
     # GIVEN
     config = {"currency": "CHF"}
-    plugin = Iso20022Plugin(UI(), config)
+    plugin = BkbPlugin(UI(), config)
 
     parser = plugin.get_parser(os.path.join(SAMPLES_DIR, "davider80.xml"))
 
@@ -132,7 +132,7 @@ def test_parse_davider80() -> None:
 def test_parse_camt052() -> None:
     # GIVEN
     config = {"currency": "CHF"}
-    plugin = Iso20022Plugin(UI(), config)
+    plugin = BkbPlugin(UI(), config)
 
     parser = plugin.get_parser(os.path.join(SAMPLES_DIR, "camt052.xml"))
 
@@ -165,7 +165,7 @@ def test_parse_camt052() -> None:
 def test_unsupported() -> None:
     # GIVEN
     config = {"currency": "CHF"}
-    plugin = Iso20022Plugin(UI(), config)
+    plugin = BkbPlugin(UI(), config)
 
     # WHEN
     parser = plugin.get_parser(os.path.join(SAMPLES_DIR, "unsupported.xml"))
@@ -178,7 +178,7 @@ def test_unsupported() -> None:
 def test_parse_camt053() -> None:
     # GIVEN
     config = {"iban": "CHxxxxxxxxxxxxxxxxxxx"}
-    plugin = Iso20022Plugin(UI(), config)
+    plugin = BkbPlugin(UI(), config)
 
     parser = plugin.get_parser(os.path.join(SAMPLES_DIR, "camt053.xml"))
 
