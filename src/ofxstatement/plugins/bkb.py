@@ -1,5 +1,6 @@
 import datetime
 import enum
+import json
 import re
 import xml.etree.ElementTree as ET
 from decimal import Decimal
@@ -223,13 +224,18 @@ class BkbParser(AbstractStatementParser):
         rmtinf = self._find(ntry, "NtryDtls/TxDtls/RmtInf/Ustrd")
         addinf = self._find(ntry, "AddtlNtryInf")
 
-        if addinf is not None:
-            sline.memo = addinf.text
-        elif rmtinf is not None:
-            sline.memo = rmtinf.text
+        # Assign the transaction number
         if refinf is not None:
             sline.check_no = refinf.text
-            sline.memo = sline.memo or refinf.text
+
+        memo_data = {
+            "CdtrRef": refinf.text if refinf is not None else "",
+            "Ustrd": rmtinf.text if rmtinf is not None else "",
+            "AddtlNtryInf": addinf.text if addinf is not None else "",
+        }
+
+        sline.memo = json.dumps(memo_data, sort_keys=True)
+
         return sline
 
     def _parse_date(self, dtnode: Optional[ET.Element]) -> Optional[datetime.datetime]:
