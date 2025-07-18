@@ -3,6 +3,7 @@ import enum
 import json
 import re
 import xml.etree.ElementTree as ET
+import xml.sax.saxutils as saxutils
 from decimal import Decimal
 from typing import Dict, List, Optional
 
@@ -234,7 +235,7 @@ class BkbParser(AbstractStatementParser):
             "AddtlNtryInf": addinf.text if addinf is not None else "",
         }
 
-        sline.memo = json.dumps(memo_data, sort_keys=True)
+        sline.memo = saxutils.escape(json.dumps(memo_data, sort_keys=True, separators=(',', ':')))
 
         return sline
 
